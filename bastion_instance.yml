@@ -4,11 +4,8 @@
   connection: local
   gather_facts: False
   tasks:
-    - name: Import VPC setup Variable
+    - name: Import VPC setup Variables
       include_vars: vars/bastion_setup
-
-    - name: Import VPC setup Variable
-      include_vars: vars/output_vars
 
     - name: Create vprofile ec2 key
       ec2_key:
@@ -18,15 +15,15 @@
 
     - name: private key into bastion
       copy:
-        content: "{{key_out.key.private_key}}"
+        content: "{{ key_out.key.private_key }}"
         dest: "./bastion-key.pem"
         mode: 0600
       when: key_out.changed
 
-    - name: SG
+    - name: Create Bastion Security Group
       ec2_group:
         name: Bastion-host-sg
-        description: Allow port 22 from everywhere and all port sg
+        description: Allow SSH from trusted IPs and all port SG
         region: "{{ region }}"
         vpc_id: "{{ vpcid }}"
         rules:
@@ -34,7 +31,7 @@
             from_port: 22
             to_port: 22
             cidr_ip: "{{ MYIP }}"
-      register: BastionSG_out
+        register: BastionSG_out
 
     - name: Creating Bastion Host
       ec2:
@@ -55,4 +52,3 @@
         group_id: "{{ BastionSG_out.group_id }}"
         vpc_subnet_id: "{{ pubsub1id }}"
       register: bastionHost_out
-
