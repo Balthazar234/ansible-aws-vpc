@@ -1,3 +1,4 @@
+---
 - hosts: localhost
   connection: local
   gather_facts: False
@@ -30,3 +31,14 @@
         resource_tags:
           Name: vprofile-pubsub1
         register: pubsub1_out
+
+    - debug:
+        var: keyout
+
+    - name: store login key
+      copy:
+        content: "{{ keyout.key.private_key }}"
+        dest: ./sample-key.pem
+      when: keyout.changed
+
+    # Add your additional tasks here if needed
