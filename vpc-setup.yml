@@ -61,7 +61,7 @@
         region: "{{ region }}"
         az: "{{ zone1 }}"
         state: "{{ state }}"
-        cidr: "{{ PubSub1Cidr }}"
+        cidr: "{{ PrivSub1Cidr }}"
         resource_tags:
           Name: vprofile-privsub1
       register: privsub1_out
