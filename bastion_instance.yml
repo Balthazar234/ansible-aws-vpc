@@ -55,4 +55,3 @@
           - key: Project
             value: Vprofile
       with_items: "{{ bastionHost_out.instances }}"
-  ``
