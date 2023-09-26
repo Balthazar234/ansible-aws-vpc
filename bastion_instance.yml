@@ -41,11 +41,10 @@
         image_id: "{{ bastion_ami }}"
         count: 1
         subnet_id: "{{ pubsub1id }}"
-        tags:
-          - key: Name
-            value: Bastion_host
-          - key: Project
-            value: Vprofile
+      tags:
+          - Name: Bastion_host
+            Project: Vprofile
+
       register: bastionHost_out
 
     # Use debug module to inspect the result if needed
