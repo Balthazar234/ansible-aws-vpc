@@ -34,13 +34,20 @@
       register: BastionSG_out
 
     - name: Creating Bastion Host
-      ec2_instance:
-        key_name: vprofile-key
+      community.aws.ec2:
         region: "{{ region }}"
         instance_type: t2.micro
         image_id: "{{ bastion_ami }}"
-        wait: yes
-        wait_timeout: 300
         count: 1
         subnet_id: "{{ pubsub1id }}"
-        instance_tags: []  # Ensure that instance_tags is an empty list
+        tags:
+          - key: Name
+            value: Bastion_host
+          - key: Project
+            value: Vprofile
+      register: bastionHost_out
+
+    # Use debug module to inspect the result if needed
+    - name: Debug Bastion Host Result
+      debug:
+        var: bastionHost_out
