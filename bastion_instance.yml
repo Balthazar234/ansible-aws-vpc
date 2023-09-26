@@ -43,7 +43,16 @@
         wait_timeout: 300
         count: 1
         subnet_id: "{{ pubsub1id }}"
-        instance_tags:
-          Name: Bastion_host
-          Project: Vprofile
       register: bastionHost_out
+
+    - name: Add tags to Bastion Host
+      ec2_tag:
+        resource: "{{ item.id }}"
+        region: "{{ region }}"
+        tags:
+          - key: Name
+            value: Bastion_host
+          - key: Project
+            value: Vprofile
+      with_items: "{{ bastionHost_out.instances }}"
+  ``
