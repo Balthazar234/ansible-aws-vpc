@@ -42,8 +42,8 @@
         count: 1
         subnet_id: "{{ pubsub1id }}"
       tags:
-          - Name: Bastion_host
-            Project: Vprofile
+          - Bastion_host
+          - Vprofile
 
       register: bastionHost_out
 
