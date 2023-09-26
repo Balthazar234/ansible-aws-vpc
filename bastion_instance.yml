@@ -43,3 +43,4 @@
         wait_timeout: 300
         count: 1
         subnet_id: "{{ pubsub1id }}"
+        instance_tags: []  # Ensure that instance_tags is an empty list
