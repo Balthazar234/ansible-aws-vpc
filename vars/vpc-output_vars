@@ -1,3 +1,4 @@
+MYIP: 192.140.148.96/32
 region: us-east-2
 vpcid: vpc-095df7de6ecb02f34
 pubsub1id: subnet-06b6c5d6928fd1422
