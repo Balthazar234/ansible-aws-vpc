@@ -36,13 +36,14 @@
             cidr_ip: 0.0.0.0/0
       register: vproELBSG_out
 
-    - name: Update SG For vpro stack
+    - name: Create SG For vpro stack
       ec2_group:
         name: vproStack-sg
         description: Allow port 22 from everywhere and all port within SG
         region: "{{ region }}"
         vpc_id: "{{ vpcid }}"
-        purge_rules: yes  # Remove existing rules
+        purge_rules: false
+        state: present
         rules:
           - proto: tcp
             from_port: 80
@@ -54,3 +55,25 @@
             to_port: 22
             group_id: "{{ BastionSGid }}"
       register: vproStackSG_out
+
+    - name: Update SG For vpro stack
+      ec2_group:
+        name: vproStack-sg
+        description: Allow port 22 from everywhere and all port within SG
+        region: "{{ region }}"
+        vpc_id: "{{ vpcid }}"
+        purge_rules: false
+        state: present
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{ vproELBSG_out.group_id }}"
+
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            group_id: "{{ BastionSGid }}"
+      register: vproStackSG_out_updated
+
+# Add other tasks here as needed
