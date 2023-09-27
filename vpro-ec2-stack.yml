@@ -23,6 +23,15 @@
         mode: 0600
       when: vprokey_out.changed
 
+    - name: Get ELB Security Group ID
+      ec2_group_info:
+        name: "{{ elb_sg_name }}"
+        region: "{{ region }}"
+      register: elb_sg_info
+
+    - set_fact:
+        vproELBSG_out: "{{ elb_sg_info.groups[0] }}"
+
     - name: Ensure SG For vpro stack exists
       ec2_group:
         name: vproStack-sg
