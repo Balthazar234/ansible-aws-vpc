@@ -24,8 +24,8 @@
       ec2_group:
         name: Bastion-host-sg
         description: Allow SSH from trusted IPs and all port SG
-        region: "{{ region }}"
-        vpc_id: "{{ vpcid }}"
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"
         rules:
           - proto: tcp
             from_port: 22
