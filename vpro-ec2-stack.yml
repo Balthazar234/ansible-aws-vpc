@@ -196,8 +196,7 @@
         name: "vprofile-elb"
         region: "{{ region }}"
         state: present
-        instance_ids:
-          - "{{ web01_out.tagged_instances[0].id }}"
+        instance_ids: "{{ web01_out.tagged_instances[0].id | default([]) }}"
         purge_instance_ids: true
         security_group_ids: "{{ vproELBSG_out.group_id }}"
         subnets:
@@ -208,7 +207,7 @@
           - protocol: http
             load_balancer_port: 80
             instance_port: 80
-      when: web01_out.tagged_instances | length > 0
+      when: web01_out is defined and web01_out.tagged_instances | length > 0
 
     - name: Insert/Update Hosts IP & Name in file provision-stack/group_vars/hostsip
       blockinfile:
