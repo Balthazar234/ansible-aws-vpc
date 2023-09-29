@@ -85,16 +85,13 @@
         instance_type: t2.micro
         image:
           id: "{{ ami_ids.nginx }}"
-          wait: yes
+        wait: yes
         wait_timeout: 300
         count: 1
         tags:
-          - key: Name
-            value: "web01"
-          - key: Project
-            value: Vprofile
-          - key: Owner
-            value: DevOps Team
+          Name: "web01"
+          Project: Vprofile
+          Owner: DevOps Team
         security_groups: "{{ vproStackSG_out.group_id }}"
         subnet: "{{ privsub1id }}"
       register: web01_out
@@ -106,16 +103,13 @@
         instance_type: t2.micro
         image:
           id: "{{ ami_ids.tomcat }}"
-          wait: yes
+        wait: yes
         wait_timeout: 300
         count: 1
         tags:
-          - key: Name
-            value: "app01"
-          - key: Project
-            value: Vprofile
-          - key: Owner
-            value: DevOps Team
+          Name: "app01"
+          Project: Vprofile
+          Owner: DevOps Team
         security_groups: "{{ vproStackSG_out.group_id }}"
         subnet: "{{ privsub1id }}"
       register: app01_out
@@ -127,16 +121,13 @@
         instance_type: t2.micro
         image:
           id: "{{ ami_ids.memcache }}"
-          wait: yes
+        wait: yes
         wait_timeout: 300
         count: 1
         tags:
-          - key: Name
-            value: "mc01"
-          - key: Project
-            value: Vprofile
-          - key: Owner
-            value: DevOps Team
+          Name: "mc01"
+          Project: Vprofile
+          Owner: DevOps Team
         security_groups: "{{ vproStackSG_out.group_id }}"
         subnet: "{{ privsub1id }}"
       register: mc01_out
@@ -148,16 +139,13 @@
         instance_type: t2.micro
         image:
           id: "{{ ami_ids.rmq }}"
-          wait: yes
+        wait: yes
         wait_timeout: 300
         count: 1
         tags:
-          - key: Name
-            value: "rmq01"
-          - key: Project
-            value: Vprofile
-          - key: Owner
-            value: DevOps Team
+          Name: "rmq01"
+          Project: Vprofile
+          Owner: DevOps Team
         security_groups: "{{ vproStackSG_out.group_id }}"
         subnet: "{{ privsub1id }}"
       register: rmq01_out
@@ -169,16 +157,13 @@
         instance_type: t2.micro
         image:
           id: "{{ ami_ids.mysql }}"
-          wait: yes
+        wait: yes
         wait_timeout: 300
         count: 1
         tags:
-          - key: Name
-            value: "db01"
-          - key: Project
-            value: Vprofile
-          - key: Owner
-            value: DevOps Team
+          Name: "db01"
+          Project: Vprofile
+          Owner: DevOps Team
         security_groups: "{{ vproStackSG_out.group_id }}"
         subnet: "{{ privsub1id }}"
       register: db01_out
