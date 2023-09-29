@@ -213,11 +213,21 @@
       blockinfile:
         path: provision-stack/group_vars/hostsip
         block: |
+          {% if web01_out is defined and web01_out.tagged_instances | length > 0 %}
           web01_ip: {{ web01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+          {% if app01_out is defined and app01_out.tagged_instances | length > 0 %}
           app01_ip: {{ app01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+          {% if rmq01_out is defined and rmq01_out.tagged_instances | length > 0 %}
           rmq01_ip: {{ rmq01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+          {% if mc01_out is defined and mc01_out.tagged_instances | length > 0 %}
           mc01_ip: {{ mc01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+          {% if db01_out is defined and db01_out.tagged_instances | length > 0 %}
           db01_ip: {{ db01_out.tagged_instances[0].private_ip }}
+          {% endif %}
 
     - name: Copy login key to provision_stack directory
       copy:
