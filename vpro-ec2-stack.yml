@@ -190,10 +190,11 @@
       debug:
         var: db01_out.instances[0].id
 
-    - local_action:
+    - name: Create ELB if web01 instance exists
+      local_action:
         module: ec2_elb_lb
         name: "vprofile-elb"
-        region: "{{region}}"
+        region: "{{ region }}"
         state: present
         instance_ids:
           - "{{ web01_out.tagged_instances[0].id }}"
@@ -204,9 +205,10 @@
           - "{{ pubsub2id }}"
           - "{{ pubsub3id }}"
         listeners:
-          - protocol: http # options are http, https, ssl, tcp
+          - protocol: http
             load_balancer_port: 80
             instance_port: 80
+      when: web01_out.tagged_instances | length > 0
 
     - name: Insert/Update Hosts IP & Name in file provision-stack/group_vars/hostsip
       blockinfile:
