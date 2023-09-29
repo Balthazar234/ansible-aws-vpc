@@ -88,6 +88,7 @@
         wait: yes
         wait_timeout: 300
         count: 1
+        state: present
         tags:
           Name: "web01"
           Project: Vprofile
@@ -106,6 +107,7 @@
         wait: yes
         wait_timeout: 300
         count: 1
+        state: present
         tags:
           Name: "app01"
           Project: Vprofile
@@ -124,6 +126,7 @@
         wait: yes
         wait_timeout: 300
         count: 1
+        state: present
         tags:
           Name: "mc01"
           Project: Vprofile
@@ -142,6 +145,7 @@
         wait: yes
         wait_timeout: 300
         count: 1
+        state: present
         tags:
           Name: "rmq01"
           Project: Vprofile
@@ -160,6 +164,7 @@
         wait: yes
         wait_timeout: 300
         count: 1
+        state: present
         tags:
           Name: "db01"
           Project: Vprofile
