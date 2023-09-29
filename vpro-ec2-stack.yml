@@ -245,38 +245,77 @@
       blockinfile:
         path: provision-stack/inventory-vpro
         block: |
+          {% if web01_out is defined and web01_out.tagged_instances | length > 0 %}
           web01 ansible_host={{ web01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+
+          {% if app01_out is defined and app01_out.tagged_instances | length > 0 %}
           app01 ansible_host={{ app01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+
+          {% if rmq01_out is defined and rmq01_out.tagged_instances | length > 0 %}
           rmq01 ansible_host={{ rmq01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+
+          {% if mc01_out is defined and mc01_out.tagged_instances | length > 0 %}
           mc01 ansible_host={{ mc01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+
+          {% if db01_out is defined and db01_out.tagged_instances | length > 0 %}
           db01 ansible_host={{ db01_out.tagged_instances[0].private_ip }}
+          {% endif %}
+
           cntl ansible_host=127.0.0.1 ansible_connection=local
-            
+
           [websrvgrp]
+          {% if web01_out is defined and web01_out.tagged_instances | length > 0 %}
           web01
-            
+          {% endif %}
+
           [appsrvgrp]
+          {% if app01_out is defined and app01_out.tagged_instances | length > 0 %}
           app01
-            
+          {% endif %}
+
           [rmqsrvgrp]
+          {% if rmq01_out is defined and rmq01_out.tagged_instances | length > 0 %}
           rmq01
-            
+          {% endif %}
+
           [mcsrvgrp]
+          {% if mc01_out is defined and mc01_out.tagged_instances | length > 0 %}
           mc01
-            
+          {% endif %}
+
           [dbsrvgrp]
+          {% if db01_out is defined and db01_out.tagged_instances | length > 0 %}
           db01
-            
+          {% endif %}
+
           [control]
           cntl
-            
+
           [stack_inst:children]
+          {% if web01_out is defined and web01_out.tagged_instances | length > 0 %}
           websrvgrp
+          {% endif %}
+
+          {% if app01_out is defined and app01_out.tagged_instances | length > 0 %}
           appsrvgrp
+          {% endif %}
+
+          {% if rmq01_out is defined and rmq01_out.tagged_instances | length > 0 %}
           rmqsrvgrp
+          {% endif %}
+
+          {% if mc01_out is defined and mc01_out.tagged_instances | length > 0 %}
           mcsrvgrp
+          {% endif %}
+
+          {% if db01_out is defined and db01_out.tagged_instances | length > 0 %}
           dbsrvgrp
-            
+          {% endif %}
+
           [stack_inst:vars]
           ansible_user=ubuntu
           ansible_ssh_private_key_file=loginkey_vpro.pem
