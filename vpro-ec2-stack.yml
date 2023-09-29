@@ -88,7 +88,7 @@
           wait: yes
         wait_timeout: 300
         count: 1
-        instance_tags:
+        tags:
           - key: Name
             value: "web01"
           - key: Project
@@ -109,7 +109,7 @@
           wait: yes
         wait_timeout: 300
         count: 1
-        instance_tags:
+        tags:
           - key: Name
             value: "app01"
           - key: Project
@@ -130,7 +130,7 @@
           wait: yes
         wait_timeout: 300
         count: 1
-        instance_tags:
+        tags:
           - key: Name
             value: "mc01"
           - key: Project
@@ -151,7 +151,7 @@
           wait: yes
         wait_timeout: 300
         count: 1
-        instance_tags:
+        tags:
           - key: Name
             value: "rmq01"
           - key: Project
@@ -172,7 +172,7 @@
           wait: yes
         wait_timeout: 300
         count: 1
-        instance_tags:
+        tags:
           - key: Name
             value: "db01"
           - key: Project
