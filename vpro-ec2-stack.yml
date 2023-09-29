@@ -3,6 +3,8 @@
   hosts: localhost
   connection: local
   gather_facts: False
+  vars:
+    region: us-east-2
   tasks:
     - name: Import VPC setup Variables
       include_vars: vars/vpc-output_vars
