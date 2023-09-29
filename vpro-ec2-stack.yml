@@ -83,8 +83,9 @@
         key_name: vprokey
         region: "{{ region }}"
         instance_type: t2.micro
-        image: "{{ nginx_ami }}"
-        wait: yes
+        image:
+          id: "{{ ami_ids.nginx }}"
+          wait: yes
         wait_timeout: 300
         count: 1
         instance_tags:
@@ -103,8 +104,9 @@
         key_name: vprokey
         region: "{{ region }}"
         instance_type: t2.micro
-        image: "{{ tomcat_ami }}"
-        wait: yes
+        image:
+          id: "{{ ami_ids.tomcat }}"
+          wait: yes
         wait_timeout: 300
         count: 1
         instance_tags:
@@ -123,8 +125,9 @@
         key_name: vprokey
         region: "{{ region }}"
         instance_type: t2.micro
-        image: "{{ memcache_ami }}"
-        wait: yes
+        image:
+          id: "{{ ami_ids.memcache }}"
+          wait: yes
         wait_timeout: 300
         count: 1
         instance_tags:
@@ -143,8 +146,9 @@
         key_name: vprokey
         region: "{{ region }}"
         instance_type: t2.micro
-        image: "{{ rmq_ami }}"
-        wait: yes
+        image:
+          id: "{{ ami_ids.rmq }}"
+          wait: yes
         wait_timeout: 300
         count: 1
         instance_tags:
@@ -163,8 +167,9 @@
         key_name: vprokey
         region: "{{ region }}"
         instance_type: t2.micro
-        image: "{{ mysql_ami }}"
-        wait: yes
+        image:
+          id: "{{ ami_ids.mysql }}"
+          wait: yes
         wait_timeout: 300
         count: 1
         instance_tags:
