@@ -23,6 +23,10 @@
         mode: 0600
       when: vprokey_out.changed
 
+    - name: Set ELB Security Group Name
+      set_fact:
+        elb_sg_name: "YourELBSecurityGroupName"
+
     - name: Create ELB Security Group
       ec2_group:
         name: "{{ elb_sg_name }}"
@@ -47,7 +51,7 @@
           - proto: tcp
             from_port: 80
             to_port: 80
-            group_id: "{{ elb_sg_out.group_id }}"
+            group_id: "{{ vproELBSG_out.group_id }}"
           - proto: tcp
             from_port: 22
             to_port: 22
@@ -65,7 +69,7 @@
           - proto: tcp
             from_port: 80
             to_port: 80
-            group_id: "{{ elb_sg_out.group_id }}"
+            group_id: "{{ vproELBSG_out.group_id }}"
           - proto: tcp
             from_port: 22
             to_port: 22
@@ -73,4 +77,3 @@
       when: not vproStackSG_out.changed
 
 # Add other tasks here as needed
-
