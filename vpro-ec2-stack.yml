@@ -10,7 +10,7 @@
       include_vars: vars/vpc-output_vars
 
     - name: Import vprofile setup Variables
-      include_vars: vars/vprostacksetup.yml
+      include_vars: vprostacksetup.yml
 
     - name: Create vprofile ec2 key
       ec2_key:
